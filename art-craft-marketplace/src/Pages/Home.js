@@ -1,14 +1,13 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';  // match the component name
 
-const Home = () => {
+function Home() {
   return (
     <div>
-      <Navbar />
-      <h1>Welcome to Art & Craft Marketplace</h1>
-      <p>Browse, buy, and sell amazing handmade items!</p>
+      <Header />  {/* now this matches the import */}
+      <h1>Welcome to the Art & Craft Marketplace</h1>
     </div>
   );
-};
+}
 
 export default Home;

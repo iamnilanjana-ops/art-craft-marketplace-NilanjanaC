@@ -1,56 +1,40 @@
-import { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Checkout from "./Pages/Checkout";
-import "./App.css";
+import UploadForm from "./components/UploadForm";
+
+function Home() {
+  return <h2>Welcome to the Art & Craft Marketplace</h2>;
+}
+
+function About() {
+  return <h2>About Our Marketplace</h2>;
+}
+
+function Checkout() {
+  return <h2>Checkout Page</h2>;
+}
 
 function App() {
-
-  // STATE (Required for Unit 1)
-  const [products, setProducts] = useState([
-    { id: 1, name: "Abstract Painting", price: 120 },
-    { id: 2, name: "Nature Photography", price: 80 }
-  ]);
-
-  const [currentPage, setCurrentPage] = useState("home");
-
-  // DELETE PRODUCT (Interactive Feature)
-  const deleteProduct = (id) => {
-    const updatedProducts = products.filter(
-      (product) => product.id !== id
-    );
-    setProducts(updatedProducts);
-  };
-
-  // SIMPLE PAGE SWITCH (No refresh – SPA)
-  const renderPage = () => {
-    if (currentPage === "about") {
-      return <About />;
-    }
-
-    if (currentPage === "checkout") {
-      return <Checkout />;
-    }
-
-    return (
-      <Home>
-        <ProductList 
-          products={products} 
-          deleteProduct={deleteProduct} 
-        />
-      </Home>
-    );
-  };
-
   return (
-    <div className="App">
-      <Header setCurrentPage={setCurrentPage} />
-      {renderPage()}
+    <Router>
+
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/upload" element={<UploadForm />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+
       <Footer />
-    </div>
+
+    </Router>
   );
 }
 
