@@ -1,33 +1,33 @@
-// src/components/Button.js
-import React from 'react';
+import React, { useState } from "react";
 
-// Props: text (button label), onClick (handler), styleType ('primary' or 'secondary')
-function Button({ text, onClick, styleType = 'primary' }) {
-  const styles = {
-    primary: {
-      backgroundColor: '#4CAF50',
-      color: 'white',
-      padding: '10px 20px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px',
-    },
-    secondary: {
-      backgroundColor: '#f1f1f1',
-      color: '#333',
-      padding: '10px 20px',
-      border: '1px solid #ccc',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px',
-    },
+function Button() {
+  const [count, setCount] = useState(0);        // Track number of clicks
+  const [message, setMessage] = useState("");   // Conditional message
+
+  // Handle button click
+  const handleClick = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+
+    // Conditional message (Step 7)
+    if (newCount === 5) {
+      setMessage("You clicked 5 times!");
+    } else if (newCount > 5) {
+      setMessage("Keep going!");
+    } else {
+      setMessage(""); // clear message for lower clicks
+    }
   };
 
   return (
-    <button style={styles[styleType]} onClick={onClick}>
-      {text}
-    </button>
+    <div style={{ padding: "20px", border: "1px solid #ccc", width: "250px" }}>
+      <h2>Click Counter</h2>
+      <button onClick={handleClick}>Click me!</button>
+      <p>Clicked: {count} times</p>
+
+      {/* Step 7 — Conditional Rendering */}
+      {message && <p style={{ color: "green" }}>{message}</p>}
+    </div>
   );
 }
 

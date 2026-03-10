@@ -1,11 +1,10 @@
-function ProductCard({ product, deleteProduct }) {
+import React from "react";
+
+function ProductCard(props) {
   return (
     <div>
-      <h3>{product.name}</h3>
-      <p>${product.price}</p>
-      <button onClick={() => deleteProduct(product.id)}>
-        Delete
-      </button>
+      <h3>{props.name}</h3>
+      <p>Price: ${props.price}</p>
     </div>
   );
 }

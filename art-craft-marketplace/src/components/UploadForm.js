@@ -1,59 +1,43 @@
-// src/components/UploadForm.js
-import React, { useState } from 'react';
-import Button from './Button';
+import React, { useState } from "react";
 
 function UploadForm() {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState("");      // stores the selected file name
+  const [uploaded, setUploaded] = useState(false);   // tracks if file is uploaded
+  const [error, setError] = useState("");            // error message if no file selected
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !price || !image) {
-      alert('Please fill all fields and select an image.');
+  // Handle file input change
+  const handleFileChange = (event) => {
+    setFileName(event.target.files[0]?.name || ""); // store file name
+    setUploaded(false);                              // reset uploaded status
+    setError("");                                    // clear errors
+  };
+
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();                         // prevent page reload
+    if (!fileName) {
+      setError("Please select a file first!");
       return;
     }
-    // For now, just log the data
-    console.log({ name, price, image });
-    alert('Product uploaded successfully!');
-    // Clear the form
-    setName('');
-    setPrice('');
-    setImage(null);
+    // Simulate upload
+    console.log("Uploading:", fileName);
+    setUploaded(true);
+    setFileName("");                                // reset input after upload
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>Upload Your Product</h2>
+    <div style={{ padding: "20px", border: "1px solid #ccc", width: "300px" }}>
+      <h2>Upload Your File</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="file" onChange={handleFileChange} />
+        <br /><br />
+        <button type="submit">Upload</button>
+      </form>
 
-      <input
-        type="text"
-        placeholder="Product Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={{ margin: '10px 0', padding: '8px', width: '250px' }}
-      />
-      <br />
-
-      <input
-        type="number"
-        placeholder="Price ($)"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        style={{ margin: '10px 0', padding: '8px', width: '250px' }}
-      />
-      <br />
-
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
-        style={{ margin: '10px 0' }}
-      />
-      <br />
-
-      <Button text="Upload Product" styleType="primary" />
-    </form>
+      {/* Step 7 — Conditional Rendering */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {uploaded && <p style={{ color: "green" }}>File uploaded successfully!</p>}
+    </div>
   );
 }
 
