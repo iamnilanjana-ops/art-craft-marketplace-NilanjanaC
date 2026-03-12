@@ -1,19 +1,10 @@
-// src/pages/Upload.js
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import UploadForm from '../components/UploadForm';
+import React from "react";
 
 function Upload() {
   return (
-    <div>
-      <Header />
-
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <UploadForm />
-      </div>
-
-      <Footer />
+    <div className="upload-page">
+      <h2>Upload Your Product</h2>
+      <p>Form will go here</p>
     </div>
   );
 }

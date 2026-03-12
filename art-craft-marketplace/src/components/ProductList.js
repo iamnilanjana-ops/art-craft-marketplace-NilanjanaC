@@ -1,26 +1,28 @@
+import React from "react";
+
 function ProductList() {
-
-  const products = [
-    { id: 1, name: "Handmade Necklace", price: 20 },
-    { id: 2, name: "Landscape Photo", price: 35 }
-  ];
-
   return (
-    <div>
-
+    <div className="product-list">
       <h2>Products</h2>
 
-      {products.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        products.map((product) => (
-          <div key={product.id}>
-            <h3>{product.name}</h3>
-            <p>${product.price}</p>
-          </div>
-        ))
-      )}
+      <div className="products">
+        <div className="product-card">
+          <h3>Handmade Necklace</h3>
+          <p>$20</p>
+        </div>
 
+        <div className="product-card">
+          <h3>Clay Pot</h3>
+          <p>$15</p>
+        </div>
+
+        <div className="product-card">
+          <h3>Art Painting</h3>
+          <p>$35</p>
+        </div>
+      </div>
     </div>
   );
 }
+
+export default ProductList;
