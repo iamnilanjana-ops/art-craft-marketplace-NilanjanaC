@@ -1,22 +1,30 @@
-// src/App.js
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
-import ProductList from "./components/ProductList";
-import Upload from "./pages/Upload"; 
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Upload from "./pages/Upload";
+import Checkout from "./pages/Checkout";
 
 function App() {
-  // State to track current page
-  const [currentPage, setCurrentPage] = useState("home");
-
   return (
-    <div>
-      {/* Pass setCurrentPage to Header so buttons can switch pages */}
-      <Header setCurrentPage={setCurrentPage} />
+    <Router>
+      <Header />
 
-      {/* Conditional rendering for pages */}
-      {currentPage === "home" && <ProductList />}
-      {currentPage === "upload" && <Upload />}
-    </div>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </Router>
   );
 }
 

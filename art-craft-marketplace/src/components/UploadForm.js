@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./UploadForm.css";
 
 function UploadForm({ addProduct }) {
-
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -23,19 +23,23 @@ function UploadForm({ addProduct }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="upload-form" onSubmit={handleSubmit}>
+      <h3>Upload Product</h3>
+
       <input
         type="text"
         placeholder="Product Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        required
       />
 
       <input
-        type="text"
+        type="number"
         placeholder="Price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+        required
       />
 
       <input
@@ -45,7 +49,7 @@ function UploadForm({ addProduct }) {
         onChange={(e) => setImage(e.target.value)}
       />
 
-      <button type="submit">Upload</button>
+      <button type="submit">Add Product</button>
     </form>
   );
 }

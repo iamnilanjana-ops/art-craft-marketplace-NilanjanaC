@@ -1,11 +1,10 @@
-import React from 'react';
-import Header from '../components/Header';  // match the component name
+import React from "react";
 
 function Home() {
   return (
-    <div>
-      <Header />  {/* now this matches the import */}
-      <h1>Welcome to the Art & Craft Marketplace</h1>
+    <div className="page-container">
+      <h2>Welcome to the Art & Craft Marketplace</h2>
+      <p>Discover unique handmade art and crafts from creative makers.</p>
     </div>
   );
 }

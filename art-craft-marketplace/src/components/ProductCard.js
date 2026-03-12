@@ -1,9 +1,17 @@
-function ProductCard({ name, price, image }) {
+import React from "react";
+import "./ProductCard.css";
+
+function ProductCard({ product }) {
   return (
     <div className="product-card">
-      <img src={image} alt={name} width="150" />
-      <h3>{name}</h3>
-      <p>${price}</p>
+      <h4>{product.name}</h4>
+      <p>Price: ${product.price}</p>
+
+      {product.image ? (
+        <img src={product.image} alt={product.name} />
+      ) : (
+        <p>No image available</p>
+      )}
     </div>
   );
 }
