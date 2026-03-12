@@ -1,26 +1,23 @@
-function ProductList() {
+import ProductCard from "./ProductCard";
 
-  const products = [
-    { id: 1, name: "Handmade Necklace", price: 20 },
-    { id: 2, name: "Landscape Photo", price: 35 }
-  ];
+function ProductList({ products }) {
+
+  if (products.length === 0) {
+    return <p>No products available</p>;
+  }
 
   return (
     <div>
-
-      <h2>Products</h2>
-
-      {products.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        products.map((product) => (
-          <div key={product.id}>
-            <h3>{product.name}</h3>
-            <p>${product.price}</p>
-          </div>
-        ))
-      )}
-
+      {products.map((product, index) => (
+        <ProductCard
+          key={index}
+          name={product.name}
+          price={product.price}
+          image={product.image}
+        />
+      ))}
     </div>
   );
 }
+
+export default ProductList;

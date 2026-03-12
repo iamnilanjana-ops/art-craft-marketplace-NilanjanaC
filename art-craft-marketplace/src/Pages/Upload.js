@@ -1,19 +1,22 @@
-// src/pages/Upload.js
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import UploadForm from '../components/UploadForm';
+import { useState } from "react";
+import UploadForm from "../components/UploadForm";
+import ProductList from "../components/ProductList";
 
 function Upload() {
+
+  const [products, setProducts] = useState([]);
+
+  const addProduct = (product) => {
+    setProducts([...products, product]);
+  };
+
   return (
     <div>
-      <Header />
+      <h2>Upload Product</h2>
 
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <UploadForm />
-      </div>
+      <UploadForm addProduct={addProduct} />
 
-      <Footer />
+      <ProductList products={products} />
     </div>
   );
 }

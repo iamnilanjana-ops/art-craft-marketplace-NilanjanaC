@@ -1,40 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+// src/App.js
+import React, { useState } from "react";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
-import UploadForm from "./components/UploadForm";
-
-function Home() {
-  return <h2>Welcome to the Art & Craft Marketplace</h2>;
-}
-
-function About() {
-  return <h2>About Our Marketplace</h2>;
-}
-
-function Checkout() {
-  return <h2>Checkout Page</h2>;
-}
+import Upload from "./pages/Upload"; 
 
 function App() {
+  // State to track current page
+  const [currentPage, setCurrentPage] = useState("home");
+
   return (
-    <Router>
+    <div>
+      {/* Pass setCurrentPage to Header so buttons can switch pages */}
+      <Header setCurrentPage={setCurrentPage} />
 
-      <Header />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/upload" element={<UploadForm />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-
-      <Footer />
-
-    </Router>
+      {/* Conditional rendering for pages */}
+      {currentPage === "home" && <ProductList />}
+      {currentPage === "upload" && <Upload />}
+    </div>
   );
 }
 
