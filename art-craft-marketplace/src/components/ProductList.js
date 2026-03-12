@@ -1,26 +1,21 @@
-import React from "react";
+import ProductCard from "./ProductCard";
 
-function ProductList() {
+function ProductList({ products }) {
+
+  if (products.length === 0) {
+    return <p>No products available</p>;
+  }
+
   return (
-    <div className="product-list">
-      <h2>Products</h2>
-
-      <div className="products">
-        <div className="product-card">
-          <h3>Handmade Necklace</h3>
-          <p>$20</p>
-        </div>
-
-        <div className="product-card">
-          <h3>Clay Pot</h3>
-          <p>$15</p>
-        </div>
-
-        <div className="product-card">
-          <h3>Art Painting</h3>
-          <p>$35</p>
-        </div>
-      </div>
+    <div>
+      {products.map((product, index) => (
+        <ProductCard
+          key={index}
+          name={product.name}
+          price={product.price}
+          image={product.image}
+        />
+      ))}
     </div>
   );
 }
