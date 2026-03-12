@@ -1,21 +1,21 @@
+import React from "react";
 import ProductCard from "./ProductCard";
+import "./ProductList.css";
 
 function ProductList({ products }) {
-
-  if (products.length === 0) {
-    return <p>No products available</p>;
-  }
-
   return (
-    <div>
-      {products.map((product, index) => (
-        <ProductCard
-          key={index}
-          name={product.name}
-          price={product.price}
-          image={product.image}
-        />
-      ))}
+    <div className="product-list">
+      <h3>Product List</h3>
+
+      {products.length === 0 ? (
+        <p>No products available.</p>
+      ) : (
+        <div className="product-grid">
+          {products.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

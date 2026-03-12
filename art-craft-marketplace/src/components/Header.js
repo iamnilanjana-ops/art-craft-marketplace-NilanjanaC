@@ -1,13 +1,16 @@
-// src/components/Header.js
 import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
-function Header({ setCurrentPage }) {
+function Header() {
   return (
-    <header>
+    <header className="header">
       <h1>Art & Craft Marketplace</h1>
-      <nav>
-        <button onClick={() => setCurrentPage("home")}>Home</button>
-        <button onClick={() => setCurrentPage("upload")}>Upload</button>
+      <nav className="nav-links">
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/upload">Upload</Link>
+        <Link to="/checkout">Checkout</Link>
       </nav>
     </header>
   );
