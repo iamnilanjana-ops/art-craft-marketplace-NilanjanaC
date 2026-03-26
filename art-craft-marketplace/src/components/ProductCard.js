@@ -8,7 +8,7 @@ function ProductCard({ product }) {
       <p>Price: ${product.price}</p>
 
       {product.image ? (
-        <img src={product.image} alt={product.name} />
+        <img src={product.image} alt={product.name} className="product-image" />
       ) : (
         <p>No image available</p>
       )}

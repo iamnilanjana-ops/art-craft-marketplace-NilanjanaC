@@ -2,24 +2,57 @@ import React, { useState } from "react";
 import "./UploadForm.css";
 
 function UploadForm({ addProduct }) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    image: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        image: reader.result
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!formData.name || !formData.price) return;
+
     const newProduct = {
-      name,
-      price,
-      image
+      ...formData,
+      id: Date.now()
     };
 
     addProduct(newProduct);
 
-    setName("");
-    setPrice("");
-    setImage("");
+    setFormData({
+      name: "",
+      price: "",
+      image: ""
+    });
+
+    e.target.reset();
   };
 
   return (
@@ -28,26 +61,35 @@ function UploadForm({ addProduct }) {
 
       <input
         type="text"
+        name="name"
         placeholder="Product Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={formData.name}
+        onChange={handleChange}
         required
       />
 
       <input
         type="number"
+        name="price"
         placeholder="Price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        value={formData.price}
+        onChange={handleChange}
         required
       />
 
       <input
-        type="text"
-        placeholder="Image URL"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
       />
+
+      {formData.image && (
+        <img
+          src={formData.image}
+          alt="Preview"
+          className="product-image"
+        />
+      )}
 
       <button type="submit">Add Product</button>
     </form>
