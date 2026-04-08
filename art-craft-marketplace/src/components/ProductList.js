@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import "./ProductList.css";
 
-function ProductList({ products, deleteProduct }) {
+function ProductList({ products, deleteProduct, editProduct }) {
   return (
     <div className="product-list">
       <h3>Product List</h3>
@@ -16,6 +16,7 @@ function ProductList({ products, deleteProduct }) {
               key={product.id}
               product={product}
               deleteProduct={deleteProduct}
+              editProduct={editProduct}
             />
           ))}
         </div>
