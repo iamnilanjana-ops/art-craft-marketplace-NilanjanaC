@@ -1,0 +1,13 @@
+package com.nilanjana.practice_movie_description;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PracticeMovieDescriptionApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PracticeMovieDescriptionApplication.class, args);
+	}
+
+}

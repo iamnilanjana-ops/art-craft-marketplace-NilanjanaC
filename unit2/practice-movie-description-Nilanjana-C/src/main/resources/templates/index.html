@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Manager</title>
+</head>
+<body>
+
+<h1>Movie Manager</h1>
+
+<form th:action="@{/add}" th:object="${movie}" method="post">
+
+    <label>Movie Title:</label><br>
+    <input type="text" th:field="*{title}" required><br><br>
+
+    <label>Rating:</label><br>
+    <input type="text" th:field="*{rating}" required><br><br>
+
+    <button type="submit">Add Movie</button>
+
+</form>
+
+<hr>
+
+<h2>Saved Movies</h2>
+
+<div th:each="movie : ${movies}">
+    <h3 th:text="${movie.title}"></h3>
+
+    <p>
+        <strong>Rating:</strong>
+        <span th:text="${movie.rating}"></span>
+    </p>
+
+    <p th:text="${movie.description}"></p>
+
+    <hr>
+</div>
+
+</body>
+</html>
